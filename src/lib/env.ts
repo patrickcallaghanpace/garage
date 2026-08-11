@@ -28,11 +28,24 @@ export const env = {
   twilioAuthToken,
   twilioWhatsappFrom,
   appUrl: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  // Per-deployment display name for white-labeling — falls back to the
+  // translated default (messages/*.json App.name) when unset. Server-only:
+  // only ever read from server components/functions, no NEXT_PUBLIC_ prefix.
+  businessName: process.env.BUSINESS_NAME,
 };
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl && supabaseAnonKey && supabaseServiceRoleKey
 );
+
+/**
+ * Client-safe subset: whether Supabase Auth (url + anon key only) is usable
+ * in the browser. Unlike `isSupabaseConfigured`, this never depends on
+ * `SUPABASE_SERVICE_ROLE_KEY` — that var is never inlined into client
+ * bundles, so checking it from a Client Component always reads `undefined`
+ * there and would silently disagree with the server's render.
+ */
+export const isSupabasePublicConfigured = Boolean(supabaseUrl && supabaseAnonKey);
 
 export const isGoogleMapsConfigured = Boolean(googleMapsApiKey);
 

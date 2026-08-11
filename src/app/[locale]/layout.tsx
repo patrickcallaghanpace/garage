@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
+import { env } from "@/lib/env";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -29,7 +30,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "App" });
   return {
-    title: t("name"),
+    title: env.businessName ?? t("name"),
   };
 }
 

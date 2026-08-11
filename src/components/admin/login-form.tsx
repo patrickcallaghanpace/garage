@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
-import { isSupabaseConfigured } from "@/lib/env";
+import { isSupabasePublicConfigured } from "@/lib/env";
 import { Loader2 } from "lucide-react";
 
 export function LoginForm() {
@@ -17,7 +17,7 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!isSupabaseConfigured) {
+  if (!isSupabasePublicConfigured) {
     return (
       <Card>
         <CardContent className="pt-6 text-center text-muted-foreground">

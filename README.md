@@ -74,6 +74,10 @@ Apply `supabase/migrations/*.sql` in order (via the Supabase CLI or the SQL edit
 
 Deploy to Vercel, set the environment variables from `.env.example` in the Vercel project settings, and point your domain's DNS at Vercel. The Google Business Profile "Book" button should link to `https://yourdomain.com/book`. See [docs/SETUP.md](docs/SETUP.md) for the full walkthrough, including the daily WhatsApp/email reminder cron job (`vercel.json`).
 
+## Running this for multiple customers
+
+This app is designed to run as **one deployment per garagiste customer** — same repo, but each customer gets their own Supabase project (fully isolated database) and Vercel project (own domain/env vars), not a shared multi-tenant database. See [docs/NEW_CUSTOMER.md](docs/NEW_CUSTOMER.md) for the repeatable checklist to spin up a new customer.
+
 ## Privacy & security
 
 - Vercel serves everything over HTTPS by default.
