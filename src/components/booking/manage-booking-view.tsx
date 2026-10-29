@@ -21,7 +21,8 @@ interface SlotOption {
 
 function formatWhen(iso: string, locale: string) {
   const zoned = toZonedTime(new Date(iso), APP_TIMEZONE);
-  return format(zoned, "EEEE d MMMM yyyy 'à' HH:mm", { locale: locale === "fr" ? fr : enUS });
+  const at = locale === "fr" ? "à" : "at";
+  return format(zoned, `EEEE d MMMM yyyy '${at}' HH:mm`, { locale: locale === "fr" ? fr : enUS });
 }
 
 const STATUS_VARIANT: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
@@ -119,7 +120,7 @@ export function ManageBookingView({
             <span className="font-medium">{serviceName}</span>
             <Badge variant={STATUS_VARIANT[appointment.status]}>{t(`status.${appointment.status}`)}</Badge>
           </div>
-          <p className="text-lg capitalize">{formatWhen(appointment.scheduled_start, locale)}</p>
+          <p className="text-xl font-semibold first-letter:uppercase">{formatWhen(appointment.scheduled_start, locale)}</p>
           <p className="text-sm text-muted-foreground">
             {appointment.address_street}, {appointment.address_postal_code}{" "}
             {appointment.address_locality}
@@ -151,7 +152,7 @@ export function ManageBookingView({
                   type="button"
                   disabled={loading}
                   onClick={() => confirmReschedule(slot.startIso)}
-                  className="rounded-lg border border-border p-3 text-left capitalize transition-colors hover:bg-muted"
+                  className="min-h-12 border-2 border-ink/15 p-3 text-left font-semibold transition-colors first-letter:uppercase hover:border-ink"
                 >
                   {formatWhen(slot.startIso, locale)}
                 </button>

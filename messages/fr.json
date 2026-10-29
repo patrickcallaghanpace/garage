@@ -5,7 +5,33 @@
   "Home": {
     "title": "Garage mobile à domicile",
     "subtitle": "Pneus, vidange, batterie, dépannage... Je viens chez vous, où que vous soyez en Suisse.",
-    "cta": "Prendre rendez-vous"
+    "cta": "Réserver mon créneau",
+    "heroTitle": "Vos pneus changés chez vous.",
+    "heroSubtitle": "On vient à votre domicile ou sur votre lieu de travail. Vous choisissez un créneau en ligne, on s'occupe du reste.",
+    "orCall": "Ou appelez le",
+    "photoAlt": "La remorque Pneu@Home, garée dans la neige, prête à changer vos pneus à domicile",
+    "howTitle": "Comment ça marche",
+    "steps": {
+      "where": {
+        "title": "Dites-nous où",
+        "body": "Votre adresse et vos coordonnées. C'est tout."
+      },
+      "service": {
+        "title": "Choisissez la prestation",
+        "body": "Changement de pneus, crevaison, vidange…"
+      },
+      "slot": {
+        "title": "Prenez un créneau",
+        "body": "On ne propose que des horaires où on peut vraiment passer."
+      },
+      "arrive": {
+        "title": "On vient chez vous",
+        "body": "Un changement de plan ? Déplacez ou annulez avec votre lien."
+      }
+    },
+    "servicesTitle": "Ce qu'on fait",
+    "servicesBody": "Tout se fait devant chez vous, sans que vous ayez à bouger.",
+    "closingTitle": "Prêt ? Choisissez votre créneau."
   },
   "Address": {
     "street": "Rue et numéro",
@@ -40,7 +66,10 @@
     "errorSlotUnavailable": "Ce créneau n'est plus disponible. Merci d'en choisir un autre.",
     "errorNotConfigured": "Service temporairement indisponible.",
     "errorValidation": "Merci de vérifier les informations saisies.",
-    "errorGeneric": "Une erreur est survenue. Merci de réessayer."
+    "errorGeneric": "Une erreur est survenue. Merci de réessayer.",
+    "summaryWhen": "Quand",
+    "summaryService": "Prestation",
+    "summaryWhere": "Où"
   },
   "ManageBooking": {
     "title": "Mon rendez-vous",
@@ -67,7 +96,32 @@
     "email": "E-mail",
     "password": "Mot de passe",
     "invalidCredentials": "E-mail ou mot de passe incorrect.",
-    "submit": "Se connecter"
+    "submit": "Se connecter",
+    "forgotPassword": "Mot de passe oublié ?"
+  },
+  "AdminForgotPassword": {
+    "title": "Mot de passe oublié",
+    "notConfigured": "Supabase n'est pas encore configuré.",
+    "intro": "Saisissez votre e-mail : nous vous enverrons un lien pour choisir un nouveau mot de passe.",
+    "email": "E-mail",
+    "submit": "Envoyer le lien",
+    "sentTitle": "Vérifiez votre boîte mail",
+    "sentBody": "Si un compte existe pour cette adresse, un lien de réinitialisation vient d'être envoyé. Ouvrez-le dans ce même navigateur.",
+    "sendFailed": "Impossible d'envoyer l'e-mail pour le moment. Réessayez dans quelques minutes.",
+    "backToLogin": "Retour à la connexion"
+  },
+  "AdminResetPassword": {
+    "title": "Nouveau mot de passe",
+    "notConfigured": "Supabase n'est pas encore configuré.",
+    "invalidTitle": "Lien invalide ou expiré",
+    "invalidBody": "Ce lien a déjà été utilisé, a expiré, ou a été ouvert dans un autre navigateur que celui de la demande.",
+    "requestNewLink": "Demander un nouveau lien",
+    "newPassword": "Nouveau mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "submit": "Enregistrer le mot de passe",
+    "tooShort": "Le mot de passe doit contenir au moins {min} caractères.",
+    "mismatch": "Les deux mots de passe ne correspondent pas.",
+    "updateFailed": "Impossible de mettre à jour le mot de passe. Demandez un nouveau lien."
   },
   "Admin": {
     "navCalendar": "Agenda",
@@ -151,6 +205,16 @@
       "work": "Dépôt",
       "current_location": "Position du jour"
     },
-    "noOverrides": "Aucun point de départ personnalisé à venir."
+    "noOverrides": "Aucun point de départ personnalisé à venir.",
+    "setupBannerTitle": "Configuration à terminer",
+    "setupBannerBody": "Ajoutez votre adresse de domicile ou de dépôt dans les réglages pour que les rendez-vous en ligne fonctionnent.",
+    "setupBannerCta": "Aller aux réglages"
+  },
+  "Nav": {
+    "book": "Réserver"
+  },
+  "Footer": {
+    "contact": "Contact",
+    "follow": "Suivez-nous"
   }
 }

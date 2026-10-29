@@ -5,7 +5,33 @@
   "Home": {
     "title": "Mobile garage, at your door",
     "subtitle": "Tyres, oil change, battery, lockouts... I come to you, anywhere in Switzerland.",
-    "cta": "Book an appointment"
+    "cta": "Book my slot",
+    "heroTitle": "Tyres changed at your door.",
+    "heroSubtitle": "We come to your home or workplace. You pick a time online, we take care of the rest.",
+    "orCall": "Or call",
+    "photoAlt": "The Pneu@Home trailer parked in the snow, ready to change your tyres at home",
+    "howTitle": "How it works",
+    "steps": {
+      "where": {
+        "title": "Tell us where",
+        "body": "Your address and contact details. That's it."
+      },
+      "service": {
+        "title": "Pick the service",
+        "body": "Tyre change, puncture repair, oil change…"
+      },
+      "slot": {
+        "title": "Take a time slot",
+        "body": "We only offer times we can genuinely make."
+      },
+      "arrive": {
+        "title": "We come to you",
+        "body": "Plans changed? Reschedule or cancel with your link."
+      }
+    },
+    "servicesTitle": "What we do",
+    "servicesBody": "Everything happens outside your door, without you having to go anywhere.",
+    "closingTitle": "Ready? Pick your slot."
   },
   "Address": {
     "street": "Street and number",
@@ -40,7 +66,10 @@
     "errorSlotUnavailable": "That slot is no longer available. Please choose another one.",
     "errorNotConfigured": "Service temporarily unavailable.",
     "errorValidation": "Please check the information you entered.",
-    "errorGeneric": "Something went wrong. Please try again."
+    "errorGeneric": "Something went wrong. Please try again.",
+    "summaryWhen": "When",
+    "summaryService": "Service",
+    "summaryWhere": "Where"
   },
   "ManageBooking": {
     "title": "My appointment",
@@ -67,7 +96,32 @@
     "email": "Email",
     "password": "Password",
     "invalidCredentials": "Incorrect email or password.",
-    "submit": "Sign in"
+    "submit": "Sign in",
+    "forgotPassword": "Forgot your password?"
+  },
+  "AdminForgotPassword": {
+    "title": "Forgot password",
+    "notConfigured": "Supabase isn't configured yet.",
+    "intro": "Enter your email and we'll send you a link to choose a new password.",
+    "email": "Email",
+    "submit": "Send reset link",
+    "sentTitle": "Check your inbox",
+    "sentBody": "If an account exists for that address, a reset link has just been sent. Open it in this same browser.",
+    "sendFailed": "We couldn't send the email right now. Please try again in a few minutes.",
+    "backToLogin": "Back to sign in"
+  },
+  "AdminResetPassword": {
+    "title": "New password",
+    "notConfigured": "Supabase isn't configured yet.",
+    "invalidTitle": "Link invalid or expired",
+    "invalidBody": "This link was already used, has expired, or was opened in a different browser than the one that requested it.",
+    "requestNewLink": "Request a new link",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "submit": "Save password",
+    "tooShort": "Password must be at least {min} characters.",
+    "mismatch": "The two passwords don't match.",
+    "updateFailed": "Couldn't update the password. Please request a new link."
   },
   "Admin": {
     "navCalendar": "Calendar",
@@ -151,6 +205,16 @@
       "work": "Workshop",
       "current_location": "That day's location"
     },
-    "noOverrides": "No upcoming custom start locations."
+    "noOverrides": "No upcoming custom start locations.",
+    "setupBannerTitle": "Finish setting up",
+    "setupBannerBody": "Add your home or workshop address in Settings so online bookings can start working.",
+    "setupBannerCta": "Go to Settings"
+  },
+  "Nav": {
+    "book": "Book"
+  },
+  "Footer": {
+    "contact": "Contact",
+    "follow": "Follow us"
   }
 }

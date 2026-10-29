@@ -44,6 +44,7 @@ export function SwissAddressFields({
       <div className="grid gap-1.5">
         <Label htmlFor={`${idPrefix}-street`}>{t("street")}</Label>
         <Input
+          className="h-12 text-base"
           id={`${idPrefix}-street`}
           value={value.street}
           onChange={(e) => set("street", e.target.value)}
@@ -57,6 +58,7 @@ export function SwissAddressFields({
         <div className="grid gap-1.5">
           <Label htmlFor={`${idPrefix}-postal`}>{t("postalCode")}</Label>
           <Input
+            className="h-12 text-base"
             id={`${idPrefix}-postal`}
             value={value.postalCode}
             onChange={(e) => set("postalCode", e.target.value.replace(/\D/g, "").slice(0, 4))}
@@ -69,6 +71,7 @@ export function SwissAddressFields({
         <div className="grid gap-1.5">
           <Label htmlFor={`${idPrefix}-locality`}>{t("locality")}</Label>
           <Input
+            className="h-12 text-base"
             id={`${idPrefix}-locality`}
             value={value.locality}
             onChange={(e) => set("locality", e.target.value)}
@@ -82,7 +85,7 @@ export function SwissAddressFields({
       <div className="grid gap-1.5">
         <Label htmlFor={`${idPrefix}-canton`}>{t("canton")}</Label>
         <Select value={value.canton} onValueChange={(v) => set("canton", v ?? "")}>
-          <SelectTrigger id={`${idPrefix}-canton`} className="w-full">
+          <SelectTrigger id={`${idPrefix}-canton`} className="h-12 w-full text-base">
             <SelectValue placeholder={t("cantonPlaceholder")}>
               {(code: string) => {
                 const canton = SWISS_CANTONS.find((c) => c.code === code);

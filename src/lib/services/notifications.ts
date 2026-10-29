@@ -27,7 +27,8 @@ export interface SendBookingNotificationsParams {
 
 function formatWhen(appointment: AppointmentRow, locale: PreferredLanguage): string {
   const zoned = toZurich(new Date(appointment.scheduled_start));
-  return format(zoned, "EEEE d MMMM yyyy 'à' HH:mm", {
+  const at = locale === "fr" ? "à" : "at";
+  return format(zoned, `EEEE d MMMM yyyy '${at}' HH:mm`, {
     locale: locale === "fr" ? fr : enUS,
   });
 }

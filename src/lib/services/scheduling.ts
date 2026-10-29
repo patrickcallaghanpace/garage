@@ -22,7 +22,11 @@ import {
   zurichWallTimeToUtc,
   toZurich,
 } from "@/lib/time";
-import { MAX_SLOT_OPTIONS, SCHEDULING_LOOKAHEAD_DAYS } from "@/lib/constants";
+import {
+  MAX_SLOT_OPTIONS,
+  SCHEDULING_LOOKAHEAD_DAYS,
+  SLOT_INCREMENT_MINUTES,
+} from "@/lib/constants";
 import type {
   AdminSettingsRow,
   AppointmentRow,
@@ -290,14 +294,11 @@ async function computeCandidatesForDate(
   const workingStartMin = hhmmToMinutes(hours.start);
   const workingEndMin = hhmmToMinutes(hours.end);
 
-  const now = zonedNow();
-  const isToday = zurichDateString(now) === dateStr;
-  let earliestAllowedStartMin = workingStartMin;
-  if (isToday) {
-    const nowMin = now.getHours() * 60 + now.getMinutes();
-    earliestAllowedStartMin = Math.max(workingStartMin, Math.ceil(nowMin / 5) * 5);
-    if (earliestAllowedStartMin >= workingEndMin) return [];
-  }
+  // Clients can't book same-day (or past) slots — the admin needs notice to
+  // plan the route. Applies to booking and rescheduling alike, since both
+  // validate the chosen slot through this function.
+  if (dateStr <= zurichDateString(zonedNow())) return [];
+  const earliestAllowedStartMin = workingStartMin;
 
   const lunchStartMin = settings.lunch_break_start
     ? hhmmToMinutes(settings.lunch_break_start.slice(0, 5))
@@ -323,6 +324,7 @@ async function computeCandidatesForDate(
     candidate,
     durationMinutes,
     earliestAllowedStartMin,
+    slotIncrementMinutes: SLOT_INCREMENT_MINUTES,
     driveTimeMinutes,
     hardRadiusCapMinutes: settings.hard_radius_minutes,
     efficiencyCapMinutes: settings.efficiency_cap_enabled

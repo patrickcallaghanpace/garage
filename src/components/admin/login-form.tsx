@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "@/i18n/navigation";
 import { getSupabaseBrowserClient } from "@/lib/supabase/client";
 import { isSupabasePublicConfigured } from "@/lib/env";
 import { Loader2 } from "lucide-react";
@@ -72,6 +73,12 @@ export function LoginForm() {
           <Button type="submit" disabled={loading}>
             {loading ? <Loader2 className="animate-spin" /> : t("submit")}
           </Button>
+          <Link
+            href="/admin/forgot-password"
+            className="text-center text-sm text-muted-foreground underline"
+          >
+            {t("forgotPassword")}
+          </Link>
         </form>
       </CardContent>
     </Card>

@@ -7,9 +7,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display);
+  --color-ink: var(--ink);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -50,18 +53,18 @@
 
 :root {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.44 0 0);
+  --accent: oklch(0.95 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
@@ -72,7 +75,11 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.375rem;
+  /* Brand: black/white from the livery + one traffic-sign yellow for the main action */
+  --ink: oklch(0.14 0 0);
+  --signal: oklch(0.88 0.175 95);
+  --signal-foreground: oklch(0.14 0 0);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -126,5 +133,44 @@
   }
   html {
     @apply font-sans;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+/* Brand display type: heavy condensed italic, like the wordmark on the trailer. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+}
+
+/* Tyre-tread band: repeating chevrons, drawn in CSS so it scales and recolours. */
+.tread {
+  height: 28px;
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(135deg, transparent 38%, oklch(1 0 0 / 0.9) 38% 50%, transparent 50%),
+    linear-gradient(45deg, transparent 38%, oklch(1 0 0 / 0.9) 38% 50%, transparent 50%);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }

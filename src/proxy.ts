@@ -8,6 +8,10 @@ const handleI18nRouting = createIntlMiddleware(routing);
 
 const ADMIN_RE = /^\/(en\/)?admin(\/.*)?$/;
 const ADMIN_LOGIN_RE = /^\/(en\/)?admin\/login\/?$/;
+// Password recovery pages must be reachable while logged out (forgot-password),
+// and while holding only a recovery session (reset-password) — so they're
+// never gated, and never bounced to the dashboard like /login is.
+const ADMIN_RECOVERY_RE = /^\/(en\/)?admin\/(forgot-password|reset-password)\/?$/;
 
 export default async function middleware(request: NextRequest) {
   const response = handleI18nRouting(request);
@@ -19,6 +23,7 @@ export default async function middleware(request: NextRequest) {
   }
 
   const isLoginRoute = ADMIN_LOGIN_RE.test(pathname);
+  const isRecoveryRoute = ADMIN_RECOVERY_RE.test(pathname);
   const isEnglish = pathname.startsWith("/en/") || pathname === "/en";
 
   // Supabase isn't configured yet (fresh clone, no keys set up): every admin
@@ -26,7 +31,7 @@ export default async function middleware(request: NextRequest) {
   // friendly "not configured" message instead of every dashboard page
   // crashing on its own data fetch.
   if (!isSupabaseConfigured) {
-    if (isLoginRoute) return response;
+    if (isLoginRoute || isRecoveryRoute) return response;
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = isEnglish ? "/en/admin/login" : "/admin/login";
     return NextResponse.redirect(loginUrl);
@@ -52,7 +57,7 @@ export default async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!isLoginRoute && !user) {
+  if (!isLoginRoute && !isRecoveryRoute && !user) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = isEnglish ? "/en/admin/login" : "/admin/login";
     loginUrl.searchParams.set("next", pathname);

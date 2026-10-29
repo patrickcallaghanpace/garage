@@ -72,6 +72,28 @@ describe("computeDayCandidates", () => {
     ]);
   });
 
+  it("rounds offered start times up to the slot increment", () => {
+    const results = computeDayCandidates({
+      workingEndMin: WORKING_END,
+      lunchStartMin: null,
+      lunchEndMin: null,
+      anchor: ANCHOR,
+      appointments: [],
+      candidate: CANDIDATE,
+      durationMinutes: 30,
+      earliestAllowedStartMin: WORKING_START,
+      driveTimeMinutes: driveTime,
+      hardRadiusCapMinutes: 90,
+      efficiencyCapMinutes: null,
+      slotIncrementMinutes: 15,
+    });
+
+    // 480 + 25min drive = 505 (08:25) -> rounded up to 510 (08:30)
+    expect(results).toHaveLength(1);
+    expect(results[0].startMin).toBe(510);
+    expect(results[0].endMin).toBe(540);
+  });
+
   it("rejects a slot whose only leg exceeds the hard radius cap", () => {
     const results = computeDayCandidates({
       workingEndMin: WORKING_END,

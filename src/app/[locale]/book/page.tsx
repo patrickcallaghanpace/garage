@@ -47,7 +47,7 @@ export default async function BookPage({
     <div className="flex flex-1 flex-col">
       <SiteHeader />
       <main className="mx-auto w-full max-w-lg flex-1 px-4 py-8 sm:py-12">
-        <h1 className="mb-6 text-2xl font-semibold tracking-tight">{t("title")}</h1>
+        <h1 className="display mb-6 text-5xl sm:text-6xl">{t("title")}</h1>
         <BookingWizard serviceTypes={serviceTypes} locale={locale} />
       </main>
     </div>

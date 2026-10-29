@@ -45,6 +45,11 @@ export interface DayComputationInput {
   hardRadiusCapMinutes: number;
   /** null = efficiency cap disabled. */
   efficiencyCapMinutes: number | null;
+  /**
+   * Offered start times are rounded UP to a multiple of this many minutes
+   * (e.g. 15 -> :00/:15/:30/:45). Defaults to 1 (no rounding).
+   */
+  slotIncrementMinutes?: number;
 }
 
 export interface CandidateGapResult {
@@ -125,7 +130,9 @@ export function computeDayCandidates(input: DayComputationInput): CandidateGapRe
     const windows = splitAroundLunch(prevTime, nextTime, input.lunchStartMin, input.lunchEndMin);
 
     for (const w of windows) {
-      const earliestStart = Math.max(w.start, prevTime + leg1);
+      const increment = input.slotIncrementMinutes ?? 1;
+      const earliestStart =
+        Math.ceil(Math.max(w.start, prevTime + leg1) / increment) * increment;
       const candidateEnd = earliestStart + durationMinutes;
       if (candidateEnd > w.end) continue;
       if (hasNext && candidateEnd + leg2! > nextTime) continue;

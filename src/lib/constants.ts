@@ -3,6 +3,9 @@ export const APP_TIMEZONE = "Europe/Zurich";
 /** How many working days ahead the scheduling engine searches for slots. */
 export const SCHEDULING_LOOKAHEAD_DAYS = 14;
 
+/** Offered slot start times land on multiples of this many minutes (:00/:15/:30/:45). */
+export const SLOT_INCREMENT_MINUTES = 15;
+
 /** Max number of ranked slot options shown to a client. */
 export const MAX_SLOT_OPTIONS = 5;
 export const MIN_SLOT_OPTIONS_TARGET = 3;
